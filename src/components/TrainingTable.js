@@ -23,18 +23,18 @@ class TrainingTable extends Component {
                             Header: "Activity",
                             accessor: "activity"
                         },
-                        // {
-                        //     Header: "",
-                        //     accessor: "_links.href",
-                        //     flterable: false,
-                        //     Cell: ({ value }) => (
-                        //         <button className="btn btn-sm btn-danger"
-                        //             onClick={() => { this.props.deleteCar(value) }}
-                        //         >
-                        //             Delete
-                        //         </button>
-                        //     )
-                        // },
+                        {
+                            Header: "",
+                            accessor: "links[0].href",
+                            flterable: false,
+                            Cell: ({ value }) => (
+                                <button className="btn btn-sm btn-danger"
+                                    onClick={() => { this.props.deleteTraining(value) }}
+                                >
+                                    Delete
+                                </button>
+                            )
+                        },
                         // {
                         //     Header: "",
                         //     accessor: "_links.href",

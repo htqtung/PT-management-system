@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import "react-table/react-table.css";
+import { Link } from 'react-router-dom';
+
+import AddTrainingForm from './AddTrainingForm';
 // import EditCarForm from './EditCarForm';
 
 class CustomerTable extends Component {
@@ -40,13 +43,21 @@ class CustomerTable extends Component {
                         },
                         {
                             Header: "",
-                            accessor: "links[2].href",
+                            accessor: "links[0].href",
+                            flterable: false,
+                            Cell: ({ value }) => (
+                                <AddTrainingForm customer={value} />
+                            )
+                        },
+                        {
+                            Header: "",
+                            accessor: "links[0].href",
                             flterable: false,
                             Cell: ({ value }) => (
                                 <button className="btn btn-sm btn-danger"
-                                    onClick={() => { console.log(value)}}
+                                    onClick={() => {this.props.deleteCustomer(value)}}
                                 >
-                                    Trainings
+                                    Delete
                                 </button>
                             )
                         },
