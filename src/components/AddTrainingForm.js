@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
-import InputMoment from 'input-moment';
 import moment from 'moment';
 
 class AddTrainingForm extends Component {
@@ -8,6 +7,7 @@ class AddTrainingForm extends Component {
         super(props);
         this.state = {
             date: '',
+            time: '',
             activity: '',
             duration: 0,
             customer: this.props.customer,
@@ -23,19 +23,19 @@ class AddTrainingForm extends Component {
     resetInputBox = () => {
         this.setState({
             date: '',
+            time: '',
             activity: '',
             duration: 0,
         })
     }
 
     handleSubmit = (event) => {
-        event.preventDefault();
-
         const newTraining = {
             date: this.state.date,
             activity: this.state.activity,
             duration: this.state.duration,
         }
+        console.log(newTraining);
         this.resetInputBox();
         this.addTraining(newTraining);
         this.simpleDialog.hide();
@@ -67,7 +67,14 @@ class AddTrainingForm extends Component {
                                 placeholder="yyyy-mm-dd"
                                 value={this.state.date} />
                         </div>
-
+                        <div className="form-group">
+                            <input type="time"
+                                className="form-control"
+                                name="time"
+                                onChange={this.handleChange}
+                                placeholder="hh:mm"
+                                value={this.state.time} />
+                        </div>
                         <div className="form-group">
                             <input type="text"
                                 className="form-control"
