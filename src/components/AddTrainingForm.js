@@ -7,7 +7,6 @@ class AddTrainingForm extends Component {
         super(props);
         this.state = {
             date: '',
-            time: '',
             activity: '',
             duration: 0,
             customer: this.props.customer,
@@ -23,17 +22,18 @@ class AddTrainingForm extends Component {
     resetInputBox = () => {
         this.setState({
             date: '',
-            time: '',
             activity: '',
             duration: 0,
         })
     }
 
     handleSubmit = (event) => {
+        event.preventDefault();
         const newTraining = {
-            date: this.state.date,
+            date: moment(this.state.date).format(),
             activity: this.state.activity,
             duration: this.state.duration,
+            customer: this.state.customer
         }
         console.log(newTraining);
         this.resetInputBox();
@@ -60,20 +60,12 @@ class AddTrainingForm extends Component {
                 <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="New Training">
                     <form>
                         <div className="form-group">
-                            <input type="date"
+                            <input type="datetime-local"
                                 className="form-control"
                                 name="date"
                                 onChange={this.handleChange}
-                                placeholder="yyyy-mm-dd"
+                                // placeholder="yyyy-mm-dd"
                                 value={this.state.date} />
-                        </div>
-                        <div className="form-group">
-                            <input type="time"
-                                className="form-control"
-                                name="time"
-                                onChange={this.handleChange}
-                                placeholder="hh:mm"
-                                value={this.state.time} />
                         </div>
                         <div className="form-group">
                             <input type="text"

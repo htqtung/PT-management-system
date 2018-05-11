@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import Home from './components/Home';
+import TrainingCalendar from './components/TrainingCalendar';
 import About from './components/About';
 import Customerlist from './components/Customerlist';
 import Navigator from './components/Navigator';
@@ -21,10 +21,10 @@ class App extends Component {
             <Navigator />
             <Switch>
               <Route exact path="/" render={() => <h2>Welcome to PT Fitness</h2>} />
-              <Route path="/home" component={Home} />
               <Route path="/about" component={About} />
               <Route path="/customers" component={Customerlist} />
               <Route path="/trainings" component={Traininglist} />
+              <Route path="/calendar" component={TrainingCalendar} />
             </Switch>
           </div>
         </BrowserRouter>

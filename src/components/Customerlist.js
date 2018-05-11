@@ -63,18 +63,6 @@ class Customerlist extends Component {
             .catch(err => console.error(err));
     }
 
-    // editCar = (link, car) => {
-    //     fetch(link,
-    //         {
-    //             method: 'PUT',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(car)
-    //         }
-    //     )
-    //         .then(res => this.loadCars())
-    //         .catch(err => console.error(err));
-    // }
-
     render() {
         return (
             <div className="App-body">
@@ -82,7 +70,6 @@ class Customerlist extends Component {
                     <h2>Customers</h2>
                     <div className="row align-items-center">
                         <AddCustomerForm addCustomer={this.addCustomer} />
-                        {/* <CSVLink data={this.state.cars} filename={"car-list.csv"}> Download table (.csv) </CSVLink> */}
                     </div>
                     <CustomerTable data={this.state.customers} deleteCustomer={this.deleteCustomer}/>
                     <ToastContainer autoClose={1500} />

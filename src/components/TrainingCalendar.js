@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import ReactEventsCalendar from 'react-events-calendar';
 
-class Home extends Component {
+class TrainingCalendar extends Component {
     render() {
         return (
             <div>
@@ -10,4 +11,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default TrainingCalendar;
