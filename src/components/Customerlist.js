@@ -4,13 +4,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // import css
 import 'react-toastify/dist/ReactToastify.css';
+import Snackbar from 'material-ui/Snackbar';
 
 import AddCustomerForm from './AddCustomerForm';
 
 class Customerlist extends Component {
     constructor(props) {
         super(props);
-        this.state = { customers: [] };
+        this.state = { 
+            customers: [],
+            open: false,
+        };
     }
 
     componentDidMount() {
@@ -38,9 +42,7 @@ class Customerlist extends Component {
                             .then(res => this.loadCustomers())
                             .catch(err => console.error(err));
 
-                        toast.success("Customer data deleted successfully!", {
-                            position: toast.POSITION.TOP_RIGHT
-                        });
+                        this.setState({ open: true });
                     }
                 },
                 {
@@ -63,6 +65,19 @@ class Customerlist extends Component {
             .catch(err => console.error(err));
     }
 
+    // handleSnackBarActionClick = () => {
+    //     this.setState({
+    //         open: false,
+    //     });
+    //     alert('Event removed from your calendar.');
+    // };
+
+    handleSnackBarRequestClose = () => {
+        this.setState({
+            open: false,
+        });
+    };
+
     render() {
         return (
             <div className="App-body">
@@ -71,7 +86,14 @@ class Customerlist extends Component {
                         <AddCustomerForm addCustomer={this.addCustomer} />
                     </div>
                     <CustomerTable data={this.state.customers} deleteCustomer={this.deleteCustomer}/>
-                    <ToastContainer autoClose={1500} />
+                    <Snackbar
+                        open={this.state.open}
+                        message='Customer data deleted successfully!'
+                        // action="undo"
+                        autoHideDuration={2000}
+                        // onActionClick={this.handleSnackBarActionClick}
+                        onRequestClose={this.handleSnackBarRequestClose}
+                    />
                 </div>
             </div>
         );

@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // import css
+import Snackbar from 'material-ui/Snackbar';
 
 class Traininglist extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class Traininglist extends Component {
         this.state = { 
             trainings: [],
             isLoaded: false,
+            open: false,
         };
         // this.loadTrainings = this.loadTrainings.bind(this);
         // this.loadCustomerFromTrainings = this.loadCustomerFromTrainings.bind(this);
@@ -61,9 +63,7 @@ class Traininglist extends Component {
                             .then(res => this.loadTrainings())
                             .catch(err => console.error(err));
 
-                        toast.success("Training deleted successfully!", {
-                            position: toast.POSITION.TOP_RIGHT
-                        });
+                        this.setState({ open: true });
                     }
                 },
                 {
@@ -87,12 +87,36 @@ class Traininglist extends Component {
             .catch(err => console.error(err));
     }
 
+    // handleSnackBarActionClick = () => {
+    //     this.setState({
+    //         open: false,
+    //     });
+    //     alert('Event removed from your calendar.');
+    // };
+
+    handleSnackBarRequestClose = () => {
+        this.setState({
+            open: false,
+        });
+    };
+
     render() {
         return (
             <div className="App-body">
                 <div className="container-fluid">
-                    <TrainingTable data={this.state.trainings} deleteTraining={this.deleteTraining} editTraining={this.editTraining} />
-                    <ToastContainer autoClose={1500} />
+                    <TrainingTable 
+                        data={this.state.trainings} 
+                        deleteTraining={this.deleteTraining} 
+                        editTraining={this.editTraining} 
+                    />
+                    <Snackbar
+                        open={this.state.open}
+                        message='Training deleted successfully!'
+                        // action="undo"
+                        autoHideDuration={2000}
+                        // onActionClick={this.handleSnackBarActionClick}
+                        onRequestClose={this.handleSnackBarRequestClose}
+                    />
                 </div>
             </div>
         );
