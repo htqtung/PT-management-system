@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import "react-table/react-table.css";
+import FlatButton from 'material-ui/FlatButton';
 
 import AddTrainingForm from './AddTrainingForm';
 // import EditCarForm from './EditCarForm';
@@ -53,11 +54,10 @@ class CustomerTable extends Component {
                             accessor: "links[0].href",
                             flterable: false,
                             Cell: ({ value }) => (
-                                <button className="btn btn-sm btn-danger"
+                                <FlatButton secondary={true}
+                                    label="Delete"
                                     onClick={() => {this.props.deleteCustomer(value)}}
-                                >
-                                    Delete
-                                </button>
+                                />
                             )
                         },
                         // {
@@ -73,7 +73,7 @@ class CustomerTable extends Component {
                             desc: false,
                         }
                     ]}
-                    defaultPageSize={10}
+                    defaultPageSize={15}
                     data={this.props.data}
                     className="-striped"
                 />

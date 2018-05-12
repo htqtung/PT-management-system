@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
 import moment from 'moment';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
 class EditTrainingForm extends Component {
     constructor(props) {
@@ -71,10 +73,10 @@ class EditTrainingForm extends Component {
                                 <span className="input-group-text" id="inputGroup-sizing-sm">{this.state.duration} mins</span>
                             </div>
                         </div>
-                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Save</button>
+                        <RaisedButton onClick={this.handleSubmit} primary={true} label="SAVE"/>
                     </form>
                 </SkyLight>
-                <button className="btn btn-sm btn-primary" onClick={() => this.simpleDialog.show()}> Edit </button>
+                <FlatButton primary={true} onClick={() => this.simpleDialog.show()} label="EDIT"/>
             </div>
         );
     }

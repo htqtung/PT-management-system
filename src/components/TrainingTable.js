@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import "react-table/react-table.css";
 import moment from 'moment';
+import FlatButton from 'material-ui/FlatButton';
+
 import EditTrainingForm from './EditTrainingForm';
 
 class TrainingTable extends Component {
@@ -37,11 +39,10 @@ class TrainingTable extends Component {
                             accessor: "links[0].href",
                             flterable: false,
                             Cell: ({ value }) => (
-                                <button className="btn btn-sm btn-danger"
+                                <FlatButton secondary={true}
+                                    label="DELETE"
                                     onClick={() => { this.props.deleteTraining(value) }}
-                                >
-                                    Delete
-                                </button>
+                                />
                             )
                         },
                         {
@@ -51,7 +52,7 @@ class TrainingTable extends Component {
                             Cell: ({ row, value }) => (<EditTrainingForm link={value} training={row} editTraining={this.props.editTraining} />)
                         }
                     ]}
-                    defaultPageSize={10}
+                    defaultPageSize={15}
                     filterable
                     data={this.props.data}
                     className="-striped"

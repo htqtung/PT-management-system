@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
 import moment from 'moment';
+import DateTimePicker from 'material-ui-datetimepicker';
+import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog'
+import TimePickerDialog from 'material-ui/TimePicker/TimePickerDialog';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
+import Slider from 'material-ui/Slider';
+import FontIcon from 'material-ui/FontIcon';
 
 class AddTrainingForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: '',
+            date: null,
             activity: '',
-            duration: 0,
+            duration: 30,
             customer: this.props.customer,
         };
     }
@@ -19,11 +27,21 @@ class AddTrainingForm extends Component {
         })
     }
 
+    handleDate = (date) => {
+        this.setState({
+            date: date
+        })
+    }
+
+    handleSlider = (event, value) => {
+        this.setState({ duration: value });
+    };
+
     resetInputBox = () => {
         this.setState({
             date: '',
             activity: '',
-            duration: 0,
+            duration: 30,
         })
     }
 
@@ -58,7 +76,7 @@ class AddTrainingForm extends Component {
         var myTrainingForm = {
             // backgroundColor: '#00897B',
             // color: '#ffffff',
-            width: '70%',
+            width: '50%',
             minHeight: 300,
             height: 300,
             marginTop: '-300px',
@@ -68,43 +86,52 @@ class AddTrainingForm extends Component {
             <div>
                 <SkyLight dialogStyles={myTrainingForm} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="New Training">
                     <form>
-                        <div className="form-group">
-                            <input type="datetime-local"
-                                className="form-control"
-                                name="date"
-                                onChange={this.handleChange}
-                                // placeholder="yyyy-mm-dd"
-                                value={this.state.date} />
-                        </div>
-                        <div className="form-group">
-                            <input type="text"
-                                className="form-control"
-                                name="activity"
-                                onChange={this.handleChange}
-                                placeholder="Activity"
-                                value={this.state.activity} />
-                        </div>
-                        <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="basic-addon1">Duration</span>
+                        <DateTimePicker
+                            hintText="Date and Time"
+                            onChange={this.handleDate}
+                            DatePicker={DatePickerDialog}
+                            TimePicker={TimePickerDialog}
+                            fullWidth={true}
+                            clearIcon={null}
+                        />
+                        {/* <input type="datetime-local"
+                            className="form-control"
+                            name="date"
+                            onChange={this.handleChange}
+                            // placeholder="yyyy-mm-dd"
+                            value={this.state.date} /> */}
+                        <TextField name="activity" hintText="Activity"
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                        />
+                        <div className="row" style={{ borderColor: '#125242', borderWidth: 1, borderStyle: 'dashed', justifyContent: 'center' }}>
+                            <div className="col-10" style={{ alignItems: 'center', justifyContent: 'center'}}>
+                                <Slider
+                                    name="duration"
+                                    onChange={this.handleSlider}
+                                    max={180}
+                                    min={30}
+                                    step={10}
+                                    value={this.state.duration}
+                                    style={{ borderColor: '#125242', borderWidth: 1, dborderStyle: 'dashed', height: 50}}
+                                />
                             </div>
-                            <input type="range"
-                                className="form-control slider"
-                                aria-describedby="inputGroup-sizing-sm"
-                                name="duration"
-                                max={180}
-                                min={30}
-                                step={10}
-                                onChange={this.handleChange}
-                                value={this.state.duration} />
-                                <div className="input-group-append">
-                                <span className="input-group-text" id="inputGroup-sizing-sm">{this.state.duration} mins</span>
-                                </div>
+                            <div className="col-2">
+                                <p style={{ borderColor: '#125242', borderWidth: 1, borderStyle: 'dashed' }} >{this.state.duration + 'mins'}</p>
+                                    
+                            </div>
                         </div>
-                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Save</button>
+                        
+                        
+                        <RaisedButton
+                            icon={<FontIcon className="material-icons">save</FontIcon>}
+                            onClick={this.handleSubmit}
+                            primary={true}
+                            label="SAVE"
+                        />
                     </form>
                 </SkyLight>
-                <button className="btn btn-sm btn-primary" onClick={() => this.simpleDialog.show()}> Add Trainings </button>
+                <FlatButton onClick={() => this.simpleDialog.show()} primary={true} label="Add Trainings" />
             </div>
         );
     }

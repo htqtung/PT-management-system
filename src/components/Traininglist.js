@@ -22,8 +22,11 @@ class Traininglist extends Component {
         fetch('https://customerrest.herokuapp.com/api/trainings')
             .then(res => res.json())
             .then(resData => {
-                this.setState({ trainings: resData.content })
-                this.loadCustomerFromTrainings();
+                if (resData.content[0].rel !== null) {
+                    this.setState({ trainings: resData.content })
+                    this.loadCustomerFromTrainings();
+                    console.log(this.state.trainings);
+                }
             });
     }
 

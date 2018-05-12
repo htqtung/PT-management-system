@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class AddCustomerForm extends Component {
     constructor(props) {
@@ -56,73 +58,56 @@ class AddCustomerForm extends Component {
             <div>
                 <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="New Customer">
                     <form>
-                        <div className="form-group">
-                            <input type="text"
-                                className="form-control"
-                                name="firstname"
-                                onChange={this.handleChange}
-                                placeholder="First name" 
-                                value={this.state.firstname} />
-                        </div>
+                        <TextField name="firstname" hintText="First name"
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            value={this.state.firstname}
+                            fullWidth={true}
+                        />
+                        <TextField name="lastname" hintText="Last name"
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            value={this.state.lastname}
+                            fullWidth={true}
+                        />
+                        <TextField name="streetaddress" hintText="Address"
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            value={this.state.streetaddress}
+                            fullWidth={true}
+                        />
+                        <TextField name="postcode" hintText="Post code"
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            value={this.state.postcode}
+                            fullWidth={true}
+                            type="text"
+                        />
+                        <TextField name="city" hintText="City"
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            value={this.state.city}
+                            fullWidth={true}
+                        />
+                        <TextField name="email" hintText="email@domain.com"
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            value={this.state.email}
+                            fullWidth={true}
+                            type="email"
+                        />
+                        <TextField name="phone" hintText="Phone number"
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            value={this.state.phone}
+                            fullWidth={true}
+                            type="text"
+                        />
 
-                        <div className="form-group">
-                            <input type="text"
-                                className="form-control"
-                                name="lastname"
-                                onChange={this.handleChange}
-                                placeholder="Last name" 
-                                value={this.state.lastname} />
-                        </div>
-
-                        <div className="form-group">
-                            <input type="text"
-                                className="form-control"
-                                name="streetaddress"
-                                onChange={this.handleChange}
-                                placeholder="Address"
-                                value={this.state.streetaddress} />
-                        </div>
-
-                        <div className="form-group">
-                            <input type="text"
-                                className="form-control"
-                                name="postcode"
-                                onChange={this.handleChange}
-                                placeholder="Post Code"
-                                value={this.state.postcode} />
-                        </div>
-
-                        <div className="form-group">
-                            <input type="text"
-                                className="form-control"
-                                name="city"
-                                onChange={this.handleChange}
-                                placeholder="City"
-                                value={this.state.city} />
-                        </div>
-
-                        <div className="form-group">
-                            <input type="email"
-                                className="form-control"
-                                name="email"
-                                onChange={this.handleChange}
-                                placeholder="Email"
-                                value={this.state.email} />
-                        </div>
-
-                        <div className="form-group">
-                            <input type="tel"
-                                className="form-control"
-                                name="phone"
-                                onChange={this.handleChange}
-                                placeholder="Phone number"
-                                value={this.state.phone} />
-                        </div>
-
-                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Save</button>
+                        <RaisedButton onClick={this.handleSubmit} primary={true} label="SAVE"/>
                     </form>
                 </SkyLight>
-                <button className="btn btn-primary" style={{ margin: 16 }} onClick={() => this.simpleDialog.show()}> Add Customer </button>
+                <RaisedButton style={{ margin: 16 }} onClick={() => this.simpleDialog.show()} primary={true} label="Add Customer" />
             </div>
         );
     }

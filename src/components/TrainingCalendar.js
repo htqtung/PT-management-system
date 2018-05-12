@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactEventsCalendar from 'react-events-calendar';
 import BigCalendar from 'react-big-calendar';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from 'moment';
@@ -33,8 +32,10 @@ class TrainingCalendar extends React.Component {
         fetch('https://customerrest.herokuapp.com/api/trainings')
             .then(res => res.json())
             .then(resData => {
-                this.setState({ trainings: resData.content })
-                this.loadCustomerFromTrainings();
+                if(resData.content[0].rel !== null) {
+                    this.setState({ trainings: resData.content })
+                    this.loadCustomerFromTrainings();
+                }
             });
     }
 
