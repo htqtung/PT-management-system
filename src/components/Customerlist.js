@@ -67,7 +67,6 @@ class Customerlist extends Component {
         return (
             <div className="App-body">
                 <div className="container-fluid">
-                    <h2>Customers</h2>
                     <div className="row align-items-center">
                         <AddCustomerForm addCustomer={this.addCustomer} />
                     </div>

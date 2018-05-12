@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PTLogo from '../assets/logo_cover.jpg';
 
 class Navigator extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <Link className="navbar-brand" to="/"> PT Fitness</Link>
+                <Link className="navbar-brand" to="/"> <img src={PTLogo} style={{height: 40}} /></Link>
                 <button className="navbar-toggler navbar-toggler-right"
                     type="button"
                     data-toggle="collapse"
@@ -26,9 +27,6 @@ class Navigator extends Component {
                         <li className="nav-item">
                             <Link className="nav-link" to="/calendar">Calendar</Link>
                         </li >
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/about">About</Link>
-                        </li>
                     </ul>
                 </div>
             </nav>

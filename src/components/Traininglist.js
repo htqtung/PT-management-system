@@ -11,6 +11,7 @@ class Traininglist extends Component {
         this.state = { trainings: [] };
 
         this.loadTrainings = this.loadTrainings.bind(this);
+        this.loadCustomerFromTrainings = this.loadCustomerFromTrainings.bind(this);
     }
 
     componentDidMount() {
@@ -22,7 +23,18 @@ class Traininglist extends Component {
             .then(res => res.json())
             .then(resData => {
                 this.setState({ trainings: resData.content })
+                this.loadCustomerFromTrainings();
             });
+    }
+
+    loadCustomerFromTrainings = () => {
+        for (let training of this.state.trainings) {
+            fetch(training.links[2].href)
+                .then(res => res.json())
+                .then(resData => {
+                    training.customer = resData.firstname + ' ' + resData.lastname;
+                });
+        }
     }
 
     deleteTraining = (value) => {
@@ -51,40 +63,23 @@ class Traininglist extends Component {
 
     }
 
-    // addCar = (newCar) => {
-    //     fetch('https://carstockrest.herokuapp.com/cars',
-    //         {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(newCar)
-    //         }
-    //     )
-    //         .then(res => this.loadCars())
-    //         .catch(err => console.error(err));
-    // }
-
-    // editCar = (link, car) => {
-    //     fetch(link,
-    //         {
-    //             method: 'PUT',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(car)
-    //         }
-    //     )
-    //         .then(res => this.loadCars())
-    //         .catch(err => console.error(err));
-    // }
+    editTraining = (link, training) => {
+        fetch(link,
+            {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(training)
+            }
+        )
+            .then(res => this.loadTrainings())
+            .catch(err => console.error(err));
+    }
 
     render() {
         return (
             <div className="App-body">
                 <div className="container-fluid">
-                    <h2>Trainings</h2>
-                    {/* <div className="row align-items-center">
-                        <AddCarForm addCar={this.addCar} />
-                        <CSVLink data={this.state.cars} filename={"car-list.csv"}> Download table (.csv) </CSVLink>
-                    </div> */}
-                    <TrainingTable data={this.state.trainings} deleteTraining={this.deleteTraining} />
+                    <TrainingTable data={this.state.trainings} deleteTraining={this.deleteTraining} editTraining={this.editTraining} />
                     <ToastContainer autoClose={1500} />
                 </div>
             </div>

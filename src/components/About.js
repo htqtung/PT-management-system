@@ -4,7 +4,8 @@ class About extends Component {
     render() {
         return (
             <div className="About container-fluid">
-                <h2>Task Case:</h2>
+                <h1>Welcome to PT Fitness</h1>
+                <h3>Task Case:</h3>
                 <p>
                     A Personal Trainer company needs front end 
                     to their customer database. 

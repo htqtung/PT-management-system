@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
 import moment from 'moment';
 
-class AddTrainingForm extends Component {
+class EditTrainingForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            date: '',
-            activity: '',
-            duration: 0,
-            customer: this.props.customer,
-        };
+        this.state = this.props.training;
     }
 
     handleChange = (event) => {
@@ -19,39 +14,15 @@ class AddTrainingForm extends Component {
         })
     }
 
-    resetInputBox = () => {
-        this.setState({
-            date: '',
-            activity: '',
-            duration: 0,
-        })
-    }
-
     handleSubmit = (event) => {
         event.preventDefault();
         const newTraining = {
             date: moment(this.state.date).format(),
             activity: this.state.activity,
-            duration: this.state.duration,
-            customer: this.state.customer
+            duration: this.state.duration
         }
-        console.log(newTraining);
-        this.resetInputBox();
-        this.addTraining(newTraining);
+        this.props.editTraining(this.props.link, newTraining);
         this.simpleDialog.hide();
-
-    }
-
-    addTraining = (newTraining) => {
-        fetch('https://customerrest.herokuapp.com/api/trainings',
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newTraining)
-            }
-        )
-            .then(res => console.log('New training added'))
-            .catch(err => console.error(err));
     }
 
     render() {
@@ -73,8 +44,7 @@ class AddTrainingForm extends Component {
                                 className="form-control"
                                 name="date"
                                 onChange={this.handleChange}
-                                // placeholder="yyyy-mm-dd"
-                                value={this.state.date} />
+                                value={moment(this.state.date).format('YYYY-MM-DDTHH:mm')} />
                         </div>
                         <div className="form-group">
                             <input type="text"
@@ -97,17 +67,17 @@ class AddTrainingForm extends Component {
                                 step={10}
                                 onChange={this.handleChange}
                                 value={this.state.duration} />
-                                <div className="input-group-append">
+                            <div className="input-group-append">
                                 <span className="input-group-text" id="inputGroup-sizing-sm">{this.state.duration} mins</span>
-                                </div>
+                            </div>
                         </div>
                         <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Save</button>
                     </form>
                 </SkyLight>
-                <button className="btn btn-sm btn-primary" onClick={() => this.simpleDialog.show()}> Add Trainings </button>
+                <button className="btn btn-sm btn-primary" onClick={() => this.simpleDialog.show()}> Edit </button>
             </div>
         );
     }
 }
 
-export default AddTrainingForm;
+export default EditTrainingForm;

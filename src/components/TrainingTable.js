@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import "react-table/react-table.css";
 import moment from 'moment';
-// import EditCarForm from './EditCarForm';
+import EditTrainingForm from './EditTrainingForm';
 
 class TrainingTable extends Component {
     render() {
@@ -11,17 +11,26 @@ class TrainingTable extends Component {
                 <ReactTable
                     columns={[
                         {
+                            Header: "Activity",
+                            accessor: "activity"
+                        },
+                        {
+                            Header: "Customer Name",
+                            accessor: "customer"
+                        },
+                        {
                             Header: "Date",
                             accessor: "date",
                             Cell: ({value}) => (moment(value).format('DD/MM/YYYY')),
                         },
                         {
-                            Header: "Duration",
-                            accessor: "duration"
+                            Header: "Time",
+                            accessor: "date",
+                            Cell: ({ value }) => (moment(value).format('HH:mm'))
                         },
                         {
-                            Header: "Activity",
-                            accessor: "activity"
+                            Header: "Duration (mins)",
+                            accessor: "duration"
                         },
                         {
                             Header: "",
@@ -35,12 +44,12 @@ class TrainingTable extends Component {
                                 </button>
                             )
                         },
-                        // {
-                        //     Header: "",
-                        //     accessor: "_links.href",
-                        //     flterable: false,
-                        //     Cell: ({ row, value }) => (<EditCarForm link={value} car={row} editCar={this.props.editCar} />)
-                        // }
+                        {
+                            Header: "",
+                            accessor: "links[0].href",
+                            flterable: false,
+                            Cell: ({ row, value }) => (<EditTrainingForm link={value} training={row} editTraining={this.props.editTraining} />)
+                        }
                     ]}
                     defaultPageSize={10}
                     filterable
