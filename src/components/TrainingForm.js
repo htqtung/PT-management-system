@@ -52,7 +52,7 @@ class TrainingForm extends Component {
                             name="duration"
                             onChange={this.props.handleSlider}
                             max={180}
-                            min={30}
+                            min={0}
                             step={10}
                             value={duration}
                             style={{ height: 50 }}

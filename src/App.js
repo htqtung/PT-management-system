@@ -60,10 +60,6 @@ class App extends Component {
               <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/trainings" component={Traininglist} />
               <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/calendar" component={TrainingCalendar} />
               <Route render={() => <h1> Page not found </h1>} />
-              {/* <Route exact path="/" render={() => <About />} />
-              <Route path="/customers" component={Customerlist} />
-              <Route path="/trainings" component={Traininglist} />
-              <Route path="/calendar" component={TrainingCalendar} /> */}
             </Switch>
           </div>
         </BrowserRouter>

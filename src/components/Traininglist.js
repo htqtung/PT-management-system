@@ -1,3 +1,9 @@
+/*
+TODO:
+    The customer name does not appear at the first render.
+
+*/
+
 import React, { Component } from 'react';
 import TrainingTable from './TrainingTable';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,14 +14,18 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // import css
 class Traininglist extends Component {
     constructor(props) {
         super(props);
-        this.state = { trainings: [] };
-
-        this.loadTrainings = this.loadTrainings.bind(this);
-        this.loadCustomerFromTrainings = this.loadCustomerFromTrainings.bind(this);
+        this.state = { 
+            trainings: [],
+            isLoaded: false,
+        };
+        // this.loadTrainings = this.loadTrainings.bind(this);
+        // this.loadCustomerFromTrainings = this.loadCustomerFromTrainings.bind(this);
     }
+
 
     componentDidMount() {
         this.loadTrainings();
+        this.setState({isLoaded: true});
     }
 
     loadTrainings = () => {
@@ -25,7 +35,6 @@ class Traininglist extends Component {
                 if (resData.content[0].rel !== null) {
                     this.setState({ trainings: resData.content })
                     this.loadCustomerFromTrainings();
-                    console.log(this.state.trainings);
                 }
             });
     }
