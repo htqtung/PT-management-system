@@ -21,7 +21,8 @@ const PrivateRoute = ({ component: Component, ...rest, isAuthenticated }) => (
         <Redirect to={{
           pathname: '/login',
           state: { from: props.location }
-        }} />
+          }}
+        />
       )
   )} />
 )
@@ -53,7 +54,7 @@ class App extends Component {
           <div>
             <Navigator isAuthenticated={this.state.isAuthenticated} />
             <Switch>
-              <Route path="/login" component={Login} />
+              <Route path="/login" render={() => <Login isAuthenticated={this.state.isAuthenticated} />} />
               <Route exact path="/" component={About} />
               <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/customers" component={Customerlist} />
               <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/trainings" component={Traininglist} />

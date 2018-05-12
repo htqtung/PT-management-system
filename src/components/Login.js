@@ -19,6 +19,12 @@ class Login extends Component {
 
     componentDidMount() {
         this.customDialog.show();
+        console.log(this.props.isAuthenticated);
+        if(this.props.isAuthenticated) {
+            this.setState({
+                redirect: true
+            })
+        }
     }
 
     resetPassword = (event) => {
@@ -81,61 +87,52 @@ class Login extends Component {
             backgroundColor: '#fff',
             width: '20%',
             height: '300px',
-            marginTop: '-300px',
-            marginLeft: '-10%',
+            padding: 0,
+            borderRadius: 5,
+            // marginTop: '-300px',
+            // marginLeft: '-10%',
+
         };
 
         var loginDialogTitle = {
             fontSize: 24,
             backgroundColor: grey300,
+            padding: 16,
+            fontStyle: 'Roboto',
         }
 
         return (
-            // <div className="col-6 py-5">
-            //     <form>
-            //         <TextField name="email" hintText="email@domain.com"
-            //             onChange={this.handleChange}
-
-            //         />
-            //         <br />
-            //         <TextField name="password"
-            //             hintText="Password Field"
-
-            //             type="password"
-            //             onChange={this.handleChange}
-
-            //         />
-            //         <br />
-            //         <RaisedButton onClick={this.resetPassword} className="float-left" default={true} label="Forgot password?" />
-            //         <RaisedButton onClick={this.onLoginClick} className="float-right" primary={true} label="Login" />
-            //     </form>
-            //     <ToastContainer />
-            // </div>
             <div>
                 <SkyLight
                     titleStyle={loginDialogTitle}
                     dialogStyles={loginDialog}
                     hideOnOverlayClicked
                     ref={ref => this.customDialog = ref}
-                    title="Login to PT Training"
+                    title="Login to PT Fitness"
                 >
                     <form>
-                        <TextField name="email" hintText="email@domain.com"
+                        <TextField 
+                            name="email" 
+                            hintText="email@domain.com"
+                            fullWidth
                             onChange={this.handleChange}
-
+                            style={{paddingLeft: 5, paddingRight: 5}}
+                            underlineStyle={{ width: '95%' }}
                         />
                         <br />
-                        <TextField name="password"
+                        <TextField 
+                            name="password"
                             hintText="Password"
-
                             type="password"
                             onChange={this.handleChange}
-
+                            fullWidth
+                            style={{ paddingLeft: 5, paddingRight: 5 }}
+                            underlineStyle={{ width: '95%' }}
                         />
                         <br />
                         <div className="col">
-                            <RaisedButton onClick={this.resetPassword} className="center" fullWidth={true} default={true} label="Forgot password?" />
-                            <RaisedButton onClick={this.onLoginClick} className="center" fullWidth={true} primary={true} label="Login" />
+                            <RaisedButton onClick={this.resetPassword} fullWidth={true} default={true} label="Forgot password?" />
+                            <RaisedButton onClick={this.onLoginClick} fullWidth={true} primary={true} label="Login" />
                         </div>
                     </form>
                     <ToastContainer />

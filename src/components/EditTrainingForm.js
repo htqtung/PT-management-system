@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
 import moment from 'moment';
-import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+
+import TrainingForm from './TrainingForm';
 
 class EditTrainingForm extends Component {
     constructor(props) {
         super(props);
         this.state = this.props.training;
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleDate = this.handleDate.bind(this);
+        this.handleSlider = this.handleSlider.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = (event) => {
@@ -15,6 +21,16 @@ class EditTrainingForm extends Component {
             [event.target.name]: event.target.value
         })
     }
+
+    handleDate = (date) => {
+        this.setState({
+            date: date
+        })
+    }
+
+    handleSlider = (event, value) => {
+        this.setState({ duration: value });
+    };
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -29,52 +45,20 @@ class EditTrainingForm extends Component {
 
     render() {
         var myTrainingForm = {
-            // backgroundColor: '#00897B',
-            // color: '#ffffff',
-            width: '70%',
+            width: '50%',
             minHeight: 300,
-            height: 300,
-            marginTop: '-300px',
-            marginLeft: '-35%',
+            minWidth: 400,
         };
         return (
             <div>
                 <SkyLight dialogStyles={myTrainingForm} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="New Training">
-                    <form>
-                        <div className="form-group">
-                            <input type="datetime-local"
-                                className="form-control"
-                                name="date"
-                                onChange={this.handleChange}
-                                value={moment(this.state.date).format('YYYY-MM-DDTHH:mm')} />
-                        </div>
-                        <div className="form-group">
-                            <input type="text"
-                                className="form-control"
-                                name="activity"
-                                onChange={this.handleChange}
-                                placeholder="Activity"
-                                value={this.state.activity} />
-                        </div>
-                        <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="basic-addon1">Duration</span>
-                            </div>
-                            <input type="range"
-                                className="form-control slider"
-                                aria-describedby="inputGroup-sizing-sm"
-                                name="duration"
-                                max={180}
-                                min={30}
-                                step={10}
-                                onChange={this.handleChange}
-                                value={this.state.duration} />
-                            <div className="input-group-append">
-                                <span className="input-group-text" id="inputGroup-sizing-sm">{this.state.duration} mins</span>
-                            </div>
-                        </div>
-                        <RaisedButton onClick={this.handleSubmit} primary={true} label="SAVE"/>
-                    </form>
+                    <TrainingForm
+                        handleDate={this.handleDate}
+                        handleChange={this.handleChange}
+                        handleSlider={this.handleSlider}
+                        handleSubmit={this.handleSubmit}
+                        data={this.state}
+                    />
                 </SkyLight>
                 <FlatButton primary={true} onClick={() => this.simpleDialog.show()} label="EDIT"/>
             </div>

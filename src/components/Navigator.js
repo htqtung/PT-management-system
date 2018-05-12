@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import FlatButton from 'material-ui/FlatButton';
 
 import { firebaseAuth } from '../config/firebase';
 
@@ -13,7 +14,7 @@ class Navigator extends Component {
     render() {
         let logLink = null;
         if (this.props.isAuthenticated) {
-            logLink = <button className="btn btn-link" onClick={this.logout}>Logout</button>;
+            logLink = <FlatButton onClick={this.logout} label="Logout" primary/>;
         }
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,11 +39,13 @@ class Navigator extends Component {
                         <li className="nav-item">
                             <Link className="nav-link" to="/calendar">Calendar</Link>
                         </li >
-                        <li className="nav-item">
+                    </ul>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li className="nav-item float-left">
                             {logLink}
                         </li >
                     </ul>
-                </div>;
+                </div>
             </nav>
         );
     }

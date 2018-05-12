@@ -62,45 +62,38 @@ class AddCustomerForm extends Component {
                             onChange={this.handleChange}
                             fullWidth={true}
                             value={this.state.firstname}
-                            fullWidth={true}
                         />
                         <TextField name="lastname" hintText="Last name"
                             onChange={this.handleChange}
                             fullWidth={true}
                             value={this.state.lastname}
-                            fullWidth={true}
                         />
                         <TextField name="streetaddress" hintText="Address"
                             onChange={this.handleChange}
                             fullWidth={true}
                             value={this.state.streetaddress}
-                            fullWidth={true}
                         />
                         <TextField name="postcode" hintText="Post code"
                             onChange={this.handleChange}
                             fullWidth={true}
                             value={this.state.postcode}
-                            fullWidth={true}
                             type="text"
                         />
                         <TextField name="city" hintText="City"
                             onChange={this.handleChange}
                             fullWidth={true}
                             value={this.state.city}
-                            fullWidth={true}
                         />
                         <TextField name="email" hintText="email@domain.com"
                             onChange={this.handleChange}
                             fullWidth={true}
                             value={this.state.email}
-                            fullWidth={true}
                             type="email"
                         />
                         <TextField name="phone" hintText="Phone number"
                             onChange={this.handleChange}
                             fullWidth={true}
                             value={this.state.phone}
-                            fullWidth={true}
                             type="text"
                         />
 
