@@ -33,15 +33,21 @@ class Login extends Component {
         event.preventDefault();
 
         const email = document.getElementById('email').value;
-        firebaseAuth().sendPasswordResetEmail(email).then(function () {
-            toast.success("Password reset email sent.", {
-                position: toast.POSITION.BOTTOM_CENTER
+        if(email !== null) {
+            firebaseAuth().sendPasswordResetEmail(email).then(function () {
+                toast.success("Password reset email sent.", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
+            }).catch(function (error) {
+                toast.error("Error in resetting password. Type your email to email field.", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
             });
-        }).catch(function (error) {
+        }
+        else
             toast.error("Error in resetting password. Type your email to email field.", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
-        });
     }
 
     onLoginClick = (event) => {
