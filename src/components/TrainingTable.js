@@ -76,7 +76,7 @@ class TrainingTable extends Component {
                         {
                             Header: "",
                             accessor: "links[0].href",
-                            flterable: false,
+                            filterable: false,
                             Cell: ({ value }) => (
                                 <FlatButton secondary={true}
                                     label="DELETE"
@@ -88,7 +88,7 @@ class TrainingTable extends Component {
                         {
                             Header: "",
                             accessor: "links[0].href",
-                            flterable: false,
+                            filterable: false,
                             Cell: ({ row, value }) => (<EditTrainingForm link={value} training={row} editTraining={this.props.editTraining} />)
                         }
                     ]}

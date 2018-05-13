@@ -16,7 +16,6 @@ class Traininglist extends Component {
         super(props);
         this.state = { 
             trainings: [],
-            isLoaded: false,
             snackBarIsOpen: false,
         };
         // this.loadTrainings = this.loadTrainings.bind(this);
@@ -26,7 +25,6 @@ class Traininglist extends Component {
 
     componentDidMount() {
         this.loadTrainings();
-        this.setState({isLoaded: true});
     }
 
     loadTrainings = () => {

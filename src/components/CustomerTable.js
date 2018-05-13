@@ -44,7 +44,7 @@ class CustomerTable extends Component {
                         {
                             Header: "",
                             accessor: "links[0].href",
-                            flterable: false,
+                            filterable: false,
                             Cell: ({ value }) => (
                                 <AddTrainingForm customer={value} />
                             )
@@ -52,7 +52,7 @@ class CustomerTable extends Component {
                         {
                             Header: "",
                             accessor: "links[0].href",
-                            flterable: false,
+                            filterable: false,
                             Cell: ({ value }) => (
                                 <FlatButton secondary={true}
                                     label="Delete"
@@ -67,12 +67,12 @@ class CustomerTable extends Component {
                         //     Cell: ({ row, value }) => (<EditCarForm link={value} car={row} editCar={this.props.editCar} />)
                         // }
                     ]}
-                    defaultSorted={[
-                        {
-                            id: "firstname",
-                            desc: false,
-                        }
-                    ]}
+                    // defaultSorted={[
+                    //     {
+                    //         id: "firstname",
+                    //         desc: false,
+                    //     }
+                    // ]}
                     defaultPageSize={15}
                     data={this.props.data}
                     className="-striped"

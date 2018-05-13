@@ -87,9 +87,10 @@ class Login extends Component {
             backgroundColor: '#fff',
             width: '20%',
             minWidth: 300,
-            height: '300px',
+            minHeight: 250,
+            height: 250,
             padding: 0,
-            borderRadius: 5,
+            borderRadius: 8,
             // marginTop: '-300px',
             // marginLeft: '-10%',
 

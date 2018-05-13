@@ -25,7 +25,8 @@ class Customerlist extends Component {
         fetch('https://customerrest.herokuapp.com/api/customers')
             .then(res => res.json())
             .then(resData => {
-                this.setState({ customers: resData.content })
+                if (resData.content[0].rel !== null)
+                    this.setState({ customers: resData.content })
             });
     }
 
