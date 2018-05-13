@@ -6,11 +6,10 @@ TODO:
 
 import React, { Component } from 'react';
 import TrainingTable from './TrainingTable';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // import css
 import Snackbar from 'material-ui/Snackbar';
+
 
 class Traininglist extends Component {
     constructor(props) {
@@ -18,7 +17,7 @@ class Traininglist extends Component {
         this.state = { 
             trainings: [],
             isLoaded: false,
-            open: false,
+            snackBarIsOpen: false,
         };
         // this.loadTrainings = this.loadTrainings.bind(this);
         // this.loadCustomerFromTrainings = this.loadCustomerFromTrainings.bind(this);
@@ -63,7 +62,7 @@ class Traininglist extends Component {
                             .then(res => this.loadTrainings())
                             .catch(err => console.error(err));
 
-                        this.setState({ open: true });
+                        this.setState({ snackBarIsOpen: true });
                     }
                 },
                 {
@@ -72,7 +71,11 @@ class Traininglist extends Component {
                 }
             ]
         })
+        // fetch(value, { method: 'DELETE' })
+        //     .then(res => this.loadTrainings())
+        //     .catch(err => console.error(err));
 
+        // this.setState({ snackBarIsOpen: true });
     }
 
     editTraining = (link, training) => {
@@ -96,7 +99,7 @@ class Traininglist extends Component {
 
     handleSnackBarRequestClose = () => {
         this.setState({
-            open: false,
+            snackBarIsOpen: false,
         });
     };
 
@@ -110,7 +113,7 @@ class Traininglist extends Component {
                         editTraining={this.editTraining} 
                     />
                     <Snackbar
-                        open={this.state.open}
+                        open={this.state.snackBarIsOpen}
                         message='Training deleted successfully!'
                         // action="undo"
                         autoHideDuration={2000}

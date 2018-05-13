@@ -3,11 +3,50 @@ import ReactTable from 'react-table';
 import "react-table/react-table.css";
 import moment from 'moment';
 import FlatButton from 'material-ui/FlatButton';
+// import Dialog from 'material-ui/Dialog';
 
 import EditTrainingForm from './EditTrainingForm';
 
 class TrainingTable extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            // deleteDialogIsOpen: false,
+            // valueToDelete: '',
+        };
+
+        // this.handleCloseDialog = this.handleCloseDialog.bind(this);
+        // this.handleConfirmAction = this.handleConfirmAction.bind(this);
+    }
+
+    // handleOpenDeleteDialog = (value) => {
+    //     this.setState({ 
+    //         deleteDialogIsOpen: true,
+    //         valueToDelete: value
+    //     });
+    // };
+
+    // handleCloseDialog = () => {
+    //     this.setState({ deleteDialogIsOpen: false });
+    // };
+
+    // handleConfirmAction = () => {
+    //     this.handleCloseDialog();
+    //     this.props.deleteTraining(this.state.valueToDelete)
+    // }
+
     render() {
+        // const actions = [
+        //     <FlatButton
+        //         label="Cancel"
+        //         onClick={() => this.handleCloseDialog}
+        //     />,
+        //     <FlatButton
+        //         label="Delete"
+        //         onClick={() => this.handleConfirmAction}
+        //     />,
+        // ];
+
         return (
             <div>
                 <ReactTable
@@ -42,6 +81,7 @@ class TrainingTable extends Component {
                                 <FlatButton secondary={true}
                                     label="DELETE"
                                     onClick={() => { this.props.deleteTraining(value) }}
+                                    // onClick={() => this.handleOpenDeleteDialog(value)}
                                 />
                             )
                         },
@@ -57,6 +97,14 @@ class TrainingTable extends Component {
                     data={this.props.data}
                     className="-striped"
                 />
+                {/* <Dialog
+                    actions={actions}
+                    modal={false}
+                    open={this.state.deleteDialogIsOpen}
+                    onRequestClose={this.handleCloseDialog}
+                >
+                    Delete this record?
+                </Dialog> */}
             </div>
         );
     }

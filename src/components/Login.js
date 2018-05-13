@@ -12,7 +12,7 @@ class Login extends Component {
         super(props);
         this.state = { 
             email: '', 
-            password: '', 
+            password: '',
             redirect: false 
         };
     }
@@ -86,6 +86,7 @@ class Login extends Component {
         var loginDialog = {
             backgroundColor: '#fff',
             width: '20%',
+            minWidth: 300,
             height: '300px',
             padding: 0,
             borderRadius: 5,
