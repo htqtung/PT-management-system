@@ -18,7 +18,7 @@ class Navigator extends Component {
         }
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <Link className="navbar-brand" to="/"> <img alt="page logo" src={PTLogo} style={{height: 40}} /></Link>
+                <Link className="navbar-brand" to="/"> <img alt="page logo" src={PTLogo} style={{height: 40}} /> </Link>
                 <button className="navbar-toggler navbar-toggler-right"
                     type="button"
                     data-toggle="collapse"

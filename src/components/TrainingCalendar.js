@@ -76,7 +76,7 @@ class TrainingCalendar extends React.Component {
             minWidth: 200,
             minHeight: 150,
             marginTop: '-300',
-            marginLeft: '-10%',
+            marginLeft: '-20%',
             borderRadius: 5,
             borderColor: '#949494'
         };
