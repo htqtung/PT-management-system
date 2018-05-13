@@ -73,8 +73,8 @@ class TrainingCalendar extends React.Component {
         const smallInfoPopupSkyLight = {
             backgroundColor: '#fff',
             width: '20%',
-            minHeight: 50,
-            height: 150,
+            minWidth: 200,
+            minHeight: 150,
             marginTop: '-300',
             marginLeft: '-10%',
             borderRadius: 5,

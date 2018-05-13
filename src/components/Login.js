@@ -1,3 +1,5 @@
+//TODO: prevent null email value when user press FORGOT PASSWORD
+
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
