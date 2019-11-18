@@ -1,7 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-## You can see the app hosted on Heroku: 
-        https://react-app-pt-fitness-tunghuynh.herokuapp.com
+## You can see the app hosted on [Heroku](https://react-app-pt-fitness-tunghuynh.herokuapp.com)
+The app manages authentication through [Google Firebase](https://firebase.google.com). For instance, you can sign in to the app using the following credential:
+        - ID: htqtung@gmail.com
+        - Password: Password111
+
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
