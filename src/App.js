@@ -13,19 +13,23 @@ import Login from './components/Login';
 
 import Cover from './assets/cover.jpg';
 
-const PrivateRoute = ({ component: Component, ...rest, isAuthenticated }) => (
-  <Route {...rest} render={props => (
-    isAuthenticated ? (
-      <Component {...props} />
-    ) : (
-        <Redirect to={{
-          pathname: '/login',
-          state: { from: props.location }
+const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      isAuthenticated ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: '/login',
+            state: { from: props.location },
           }}
         />
       )
-  )} />
-)
+    }
+  />
+);
 
 class App extends Component {
   constructor(props) {
@@ -37,8 +41,7 @@ class App extends Component {
     firebaseAuth().onAuthStateChanged((user) => {
       if (user && user.emailVerified) {
         this.setState({ user: user, isAuthenticated: true });
-      }
-      else {
+      } else {
         this.setState({ user: null, isAuthenticated: false });
       }
     });
@@ -54,11 +57,28 @@ class App extends Component {
           <div>
             <Navigator isAuthenticated={this.state.isAuthenticated} />
             <Switch>
-              <Route path="/login" render={() => <Login isAuthenticated={this.state.isAuthenticated} />} />
+              <Route
+                path="/login"
+                render={() => (
+                  <Login isAuthenticated={this.state.isAuthenticated} />
+                )}
+              />
               <Route exact path="/" component={About} />
-              <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/customers" component={Customerlist} />
-              <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/trainings" component={Traininglist} />
-              <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/calendar" component={TrainingCalendar} />
+              <PrivateRoute
+                isAuthenticated={this.state.isAuthenticated}
+                path="/customers"
+                component={Customerlist}
+              />
+              <PrivateRoute
+                isAuthenticated={this.state.isAuthenticated}
+                path="/trainings"
+                component={Traininglist}
+              />
+              <PrivateRoute
+                isAuthenticated={this.state.isAuthenticated}
+                path="/calendar"
+                component={TrainingCalendar}
+              />
               <Route render={() => <h1> Page not found </h1>} />
             </Switch>
           </div>
@@ -69,4 +89,3 @@ class App extends Component {
 }
 
 export default App;
-
